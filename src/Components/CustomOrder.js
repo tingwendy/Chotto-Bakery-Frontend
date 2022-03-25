@@ -1,94 +1,89 @@
 import React from "react";
 import axios from "axios";
+import authService from "./Auth";
 
-const CustomOrder = (props) => {
-    const [user, setuser] = React.useState("");
-    const [phoneNumber, setphoneNumber] = React.useState("");
-    const [pickUpTime, setpickUpTime] = React.useState("");
-    const [productNeededBy, setproductNeededBy] = React.useState("");
-    const [typeOfProduct, settypeOfProduct] = React.useState("");
-    const [quantityNeeded, setquantityNeeded] = React.useState(0);
-    const [description, setdescription] = React.useState("");
-    const [foodAllergies, setfoodAllergies] = React.useState("");
+function CustomOrder () {
+    const [user, setUser] = React.useState("");
+    const [phoneNumber, setPhoneNumber] = React.useState("");
+    const [pickUpTime, setPickUpTime] = React.useState("");
+    const [productNeededBy, setProductNeededBy] = React.useState("");
+    const [typeOfProduct, setTypeOfProduct] = React.useState("");
+    const [quantityNeeded, setQuantityNeeded] = React.useState(0);
+    const [description, setDescription] = React.useState("");
+    const [foodAllergies, setFoodAllergies] = React.useState("");
     
 
-    const createCustomOrder = (e) => {
+    function createCustomOrder (e) {
         e.preventDefault();
-        props.createCustomOrder({
-            user: user,
-            phoneNumber: phoneNumber,
-            pickUpTime: pickUpTime,
-            productNeededBy: productNeededBy,
-            typeOfProduct: typeOfProduct,
-            quantityNeeded: quantityNeeded,
-            description: description,
-            foodAllergies: foodAllergies,
-        });
-        setuser("");
-        phoneNumber("");
-        pickUpTime("");
-        productNeededBy("");
-        typeOfProduct("");
-        quantityNeeded("");
-        description("");
-        foodAllergies("");
-        
-
-    };
+        authService.customOrder({
+                    user: user,
+                    phone: phoneNumber,
+                    pickUpTime: pickUpTime,
+                    productNeededBy: productNeededBy,
+                    typeOfProduct: typeOfProduct,
+                    quantityNeeded: quantityNeeded,
+                    description: description,
+                    foodAllergies: foodAllergies,
+            })
+            .then((results) => {
+                console.log("new custom order:", results.data)
+            })
+            .catch((err) => console.log(err));
+    }
 
 
     return (
     <div>
         <h3>Please fill out the form below to receive a quote for custom orders</h3>
-        <form>
+        <form onSubmit = {createCustomOrder}>
             <label htmlFor="user">Full Name</label>
             <input
             name="user name"
             value={user}
-            onChange={(e) => setuser(e.target.value)}
+            onChange={(e) => setUser(e.target.value)}
             />
             <label htmlFor="phoneNumber">Phone Number</label>
             <input
             name="phone number"
             value={phoneNumber}
-            onChange={(e) => setphoneNumber(e.target.value)}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             />
              <label htmlFor="pickUpTime">Pick up time</label>
             <input
             name="pick up time"
             value={pickUpTime}
-            onChange={(e) => setpickUpTime(e.target.value)}
+            onChange={(e) => setPickUpTime(e.target.value)}
             />
              <label htmlFor="productNeededBy">Pick up date</label>
             <input
             name="pick up date"
             type="date"
             value={productNeededBy}
-            onChange={(e) => setproductNeededBy(e.target.value)}
+            onChange={(e) => setProductNeededBy(e.target.value)}
             />
              <label htmlFor="typeOfProduct">Type of product</label>
             <input
             name="type of product"
             value={typeOfProduct}
-            onChange={(e) => settypeOfProduct(e.target.value)}
+            onChange={(e) => setTypeOfProduct(e.target.value)}
             />
              <label htmlFor="quantityNeeded">Quantity needed</label>
             <input
             name="quantity needed"
             value={quantityNeeded}
-            onChange={(e) => setquantityNeeded(e.target.value)}
+            onChange={(e) => setQuantityNeeded(e.target.value)}
             />
              <label htmlFor="description">Description/Design</label>
             <textarea
             name="description"
             value={description}
-            onChange={(e) => setdescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             />
              <label htmlFor="foodAllergies">Food allergies</label>
             <input
             name="food allergies"
             value={foodAllergies}
-            onChange={(e) => setfoodAllergies(e.target.value)}
+            onChange={(e) => setFoodAllergies(e.target.value)}
             />
             <button onClick={(e) => createCustomOrder(e)}>Submit</button>
         </form>

@@ -1,36 +1,31 @@
 import React from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const MenuDetails = () => {
-    const [items, setItems] = React.useState([]);
+    const [details, setDetails] = React.useState({});
+    const {itemId} = useParams();
+    console.log("ITEMID", itemId);
 
-  const getItemInfo = (itemId) => {
-      axios
+  React.useEffect(()=> {
+    axios
         .get(`http://localhost:5005/menu/view/${itemId}`)
         .then((results) => {
-            console.log(results.data);
+          console.log(results.data);
+          setDetails(results.data)
         })
         .catch((err) => {
             console.log(err.message);
         });
-  };
-  
+  }, []);
+
   return (
     <div className="MenuDetails">
-    <h1>Menu Details</h1>
-     {items.map((item, i) => {
-       console.log("each item", item);
-       return(
-         <div key={i}>
-         <h3>{item.name}</h3>
-         <p>{item.description}</p>
-         <p>{item.price}</p>
-         {/* <Link to="/d">About</Link> */}
-         <button onClick={() => getItemInfo(item._id)}> Details </button>
-         </div>
-       )
-     })}
+    <h1>Menu Details Page</h1>
+    <h1>{details.name}</h1>
+    <p>{details.price}</p>
     </div>
+  
   );
 }
 

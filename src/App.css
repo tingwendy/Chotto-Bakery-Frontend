@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Sacramento&family=Quicksand&display=swap');
+
 .App {
   text-align: center;
 }
@@ -36,3 +38,23 @@
     transform: rotate(360deg);
   }
 }
+
+.text-center {
+  position: relative;
+}
+
+.home {
+  font-family: "Sacramento";
+  color:white;
+  position: fixed;
+  top: 40%;
+  width: 100%;
+  font-size: 100px;
+}
+
+.homelogo {
+  width: 140px;
+  height: 140px;
+  margin: 0px 20px;
+}
+

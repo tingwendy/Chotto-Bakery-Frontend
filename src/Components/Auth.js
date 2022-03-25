@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "http://localhost:5005/api",
+  baseURL: "https://sleepy-temple-72330.herokuapp.com/",
   withCredentials: true,
 });
 
@@ -15,7 +15,7 @@ const authService = {
 
   login: (username, password) => {
     return service
-      .post("/auth/login", {
+      .post("/api/auth/login", {
         username: username,
         password: password,
       })
@@ -27,7 +27,7 @@ const authService = {
 
   loginTest: () => {
     return service
-      .get("/auth/loggedIn")
+      .get("/api/auth/loggedIn")
       .then((results) => {
         console.log(results.data);
         return results.data;
@@ -38,7 +38,7 @@ const authService = {
   },
 
   signup: (username, password, email) => {
-      return service.post("/auth/signup", {
+      return service.post("/api/auth/signup", {
           username: username,
           password: password,
           email: email,
@@ -49,12 +49,20 @@ const authService = {
   },
 
   logout: () => {
-      return service.post("/auth/logout")
+      return service.post("/api/auth/logout")
       .then((results) => {
         console.log(results.data);
         return results.data;
       })
-  }
+  },
+
+  customOrder: (body) => {
+    return service.post("/custom/new", body)
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+}
 
   
 };
