@@ -1,18 +1,18 @@
 import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import authService from "./Auth";
 
 const MenuDetails = () => {
     const [details, setDetails] = React.useState({});
-    const {itemId} = useParams();
-    console.log("ITEMID", itemId);
 
   React.useEffect(()=> {
-    axios
-        .get(`http://localhost:5005/menu/view/${itemId}`)
+    authService.viewDetails()
+    // axios
+    //     .get(`http://localhost:5005/menu/view/${itemId}`)
         .then((results) => {
-          console.log(results.data);
-          setDetails(results.data)
+          console.log(results);
+          setDetails(results)
         })
         .catch((err) => {
             console.log(err.message);
@@ -21,11 +21,17 @@ const MenuDetails = () => {
 
   return (
     <div className="MenuDetails">
-    <h1>Menu Details Page</h1>
-    <h1>{details.name}</h1>
-    <p>{details.price}</p>
+    <h1>Menu Details</h1>
+        <div>
+        <img src={details.image}/>
+        <h2>{details.name}</h2>
+        <p>Price: {details.price}</p>
+        <p>Contains: {details.contains}</p>
+        <p>Storage: {details.storage}</p>
+        </div>
+   
+    {/* })} */}
     </div>
-  
   );
 }
 

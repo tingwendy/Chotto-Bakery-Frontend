@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import authService from "./Auth";
 
 const Login = (props) => {
@@ -23,8 +22,9 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="signup-form">
       <h3>Sign up for an account or login to view your profile</h3>
+      <div className="signup-form-contents">
       {props.login && (
         <form onSubmit={logUserIn}>
           <label htmlFor="username">Username</label>
@@ -44,6 +44,7 @@ const Login = (props) => {
       )}
       {!props.login && (
         <form onSubmit={signupUser}>
+        <label htmlFor="username">Username</label>
           <input
             name="username"
             value={username}
@@ -65,6 +66,7 @@ const Login = (props) => {
         </form>
       )}
       <p>{loginMessage}</p>
+      </div>
     </div>
   );
 };

@@ -1,15 +1,25 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import authService from "./Auth";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Card,
+  Form,
+  Navbar,
+} from "react-bootstrap";
 
 const Menu = (props) => {
     const [items, setItems] = React.useState([]);
     const {onAdd}  =props;
 
   React.useEffect(() => {
-    axios.get('http://localhost:5005/menu/view-all')
+    authService.viewAll()
     .then((results)=>{
-      setItems(results.data)
+      setItems(results)
     })
     .catch((err)=>{
       console.log(err.message);
@@ -33,18 +43,37 @@ const Menu = (props) => {
      {items.map((item, i) => {
        console.log("each item", item);
        return(
-         <div key={i}>
-         <h3>{item.name}</h3>
-         <p>{item.description}</p>
-         <p>{item.price}</p>
-         {/* <button onClick={() => getItemInfo(item._id)}>Details</button> */}
-         <Link to={`/menu/view/${item._id}`}>Details</Link>
-         <button onClick={() => onAdd(item)}> Add To Cart</button>
+         <div key={i} className="menuCard">
+         <Card style={{ width: '18rem'}}>
+         <Card.Body>
+         <img src= {item.image}/>
+         <Card.Title>{item.name}</Card.Title>
+         <Card.Text>Description: {item.description}</Card.Text>
+         <Card.Text>Price: {item.price}</Card.Text>
+         <div>
+         <Link style={{ textDecoration: "none", color: "brown" }} to={`/menu/view/${item.id}`}>See Details</Link>
+         </div>
+         <div>
+         <button variant="primary" onClick={() => onAdd(item)}> Add To Cart</button>
+         </div>
+         </Card.Body>
+         </Card>
          </div>
        )
      })}
-    </div>
-  );
+     <footer className="footer">
+            <div className="footerOne">
+           <h5><strong>CHOTTO BAKERY</strong></h5>
+           <h5>Follow Us</h5>
+           <a href="https://instagram.com" style={{ textDecoration: "none", color: "brown" }}>📸Instagram</a>
+           <a href="https://yelp.com" style={{ textDecoration: "none", color: "brown" }}>☕Yelp</a>
+           <a href="https://facebook.com" style={{ textDecoration: "none", color: "brown" }}> 👍Facebook</a>
+           <h6>2022 © Chotto Bakery. All rights reserved.</h6>
+           
+           </div>
+        </footer>
+     </div>
+  )
 }
 
 export default Menu;

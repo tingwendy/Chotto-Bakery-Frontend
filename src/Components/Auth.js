@@ -1,17 +1,12 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "https://sleepy-temple-72330.herokuapp.com/",
+  baseURL: "http://localhost:5005",
+  // baseURL: "https://sleepy-temple-72330.herokuapp.com",
   withCredentials: true,
 });
 
 const authService = {
-  //   constructor() {
-  //     this.service = axios.create({
-  //       baseURL: "http://localhost:5005/api",
-  //       withCredentials: true,
-  //     });
-  //   }
 
   login: (username, password) => {
     return service
@@ -62,8 +57,55 @@ const authService = {
       console.log(results.data);
       return results.data;
     })
-}
+  },
 
+  viewCustomOrder: () => {
+    return service.get("/custom/view-order" )
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  viewAll: () => {
+    return service.get("/menu/view-all")
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  viewDetails: () => {
+    return service.get("/menu/view/:id")
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  add: (data) => {
+    return service.post("/checkout/add", data)
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  handleUpload: (img) => {
+    return service.post("/custom/upload-image", img)
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  toPay: () => {
+  return service.post("/payment/paying")
+  .then((response)=> {
+    console.log("RESPONSE", response);
+    const {status} = response;
+    console.log("STATUS", status)
+  })
   
 };
 
