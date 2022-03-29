@@ -1,6 +1,8 @@
 import React from "react";
 import authService from "./Auth";
 import axios from "axios";
+import EditCustomOrder from "./EditCustomOrder";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = React.useState({});
@@ -47,6 +49,7 @@ const Profile = () => {
                <p>Product pick up date: {custom.productNeededBy}</p>
                <p>Pick up time requested: {custom.pickUpTime}</p>
                <img src= {custom.image}/>
+               <Link style={{ textDecoration: "none", color: "brown" }} to={`/custom/edit/${custom._id}`}>Edit Custom Order</Link>
                </div>
            )
        })}

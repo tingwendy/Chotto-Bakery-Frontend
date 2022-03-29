@@ -23,6 +23,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import cakesvg from "./assets/cakesvg.png";
 import StripeCheckout from "react-stripe-checkout";
+import EditCustomOrder from "./Components/EditCustomOrder";
 
 function App() {
   const logout = () => {
@@ -119,6 +120,7 @@ function App() {
         <Route path="/login" element={<Login login={true} />} />
         <Route path="/signup" element={<Login login={false} />} />
         <Route path="/cart" element={ <Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />} />
+        <Route path="/custom/edit/:id" element={<EditCustomOrder />} />
       </Routes>
     </div>
   );

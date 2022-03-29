@@ -10,6 +10,7 @@ import {
   Card,
   Form,
   Navbar,
+  CardGroup,
 } from "react-bootstrap";
 
 const Menu = (props) => {
@@ -43,8 +44,8 @@ const Menu = (props) => {
      {items.map((item, i) => {
        console.log("each item", item);
        return(
-         <div key={i} className="menuCard">
-         <Card style={{ width: '18rem'}}>
+         <div key={i} className="menuCard" style={{display: 'flex', flexDirection: 'row', justifyContent: "center", width: "25em"}}>
+         <Card className="menuEachCard" style={{ flex: '1'}}>
          <Card.Body>
          <img src= {item.image}/>
          <Card.Title>{item.name}</Card.Title>
@@ -54,7 +55,7 @@ const Menu = (props) => {
          <Link style={{ textDecoration: "none", color: "brown" }} to={`/menu/view/${item.id}`}>See Details</Link>
          </div>
          <div>
-         <button variant="primary" onClick={() => onAdd(item)}> Add To Cart</button>
+         <button variant="primary" className="btn btn-outline-secondary" onClick={() => onAdd(item)}> Add To Cart</button>
          </div>
          </Card.Body>
          </Card>

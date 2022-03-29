@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@200&family=Grand+Hotel&family=Sacramento&family=Quicksand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@200&family=Grand+Hotel&family=Sacramento&family=Quicksand&display=swap");
 
 .App {
   text-align: center;
@@ -45,7 +45,7 @@
 
 .home {
   font-family: "Grand Hotel";
-  color:white;
+  color: white;
   position: absolute;
   top: 50%;
   width: 100%;
@@ -93,27 +93,24 @@
 .footerOne {
   text-align: left;
   margin: 15px;
-  
 }
 
 .aboutContainer {
-  color:black;
+  color: black;
   max-height: 400px;
   max-width: 1000px;
   margin: 0px 180px;
   display: flex;
-
 }
 .aboutPage {
   display: flex;
   text-align: left;
-  
 }
 
 .signup-form {
   font-family: "Nunito";
-  padding:20px;
-  display:flex;
+  padding: 20px;
+  display: flex;
   flex-direction: column;
   max-width: 300px;
   border-radius: 8px;
@@ -142,9 +139,23 @@
   line-height: 1.42857;
 }
 
-.menuCard {
-  font: "Nunito";
-  display: flex;
-  flex-direction: row;
+.Menu {
+  font-family: "Pacifico";
 }
 
+.menuCard {
+  font-family: "Nunito";
+  display: flex;
+  flex-wrap: wrap;
+  color: #282c34;
+  font-size: 15px;
+  margin-left: 37%;
+
+ 
+}
+
+.menuEachCard {
+  margin: 20px;
+  display: flex;
+  
+}

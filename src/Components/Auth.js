@@ -67,6 +67,14 @@ const authService = {
     })
   },
 
+  editCustomOrder: (body) =>{
+    return service.put("/custom/edit/:id", body)
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
   viewAll: () => {
     return service.get("/menu/view-all")
     .then((results) => {
@@ -105,7 +113,8 @@ const authService = {
     console.log("RESPONSE", response);
     const {status} = response;
     console.log("STATUS", status)
-  })
+    })
+  }
   
 };
 
