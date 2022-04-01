@@ -83,16 +83,13 @@ export default function Basket(props) {
             <strong>Total Price</strong>
           </div>
           <div>${totalPrice.toFixed(2)}</div>
-          <button class="btn btn-primary btn-sm" onClick={addItems}>
-            Checkout
-          </button>
           <StripeCheckout
             stripeKey="pk_test_51Khf6fEwT09Y7GnTBt3fVi7wgocGlfJk8SOD9Pi84gqNCDbmFYqlq9MG07GtvPZ2YkqlZo7jmMCTgp2vlWM00rit00odvi3RTz"
             token={makePayment}
             name="Chotto Bakery"
-            description={`Your total is $${totalPrice}.00`}
+            description={`Your total is $${totalPrice}`}
           >
-            <button className="btn-large pink">Buy ME</button>
+            <button className="btn btn-primary btn-sm">Checkout</button>
           </StripeCheckout>
         </div>
       )}

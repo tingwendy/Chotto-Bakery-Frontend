@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: "http://localhost:5005",
-  // baseURL: "https://sleepy-temple-72330.herokuapp.com",
+  // baseURL: "http://localhost:5005",
+  baseURL: "https://sleepy-temple-72330.herokuapp.com",
   withCredentials: true,
 });
 
@@ -69,6 +69,14 @@ const authService = {
 
   editCustomOrder: (body) =>{
     return service.put("/custom/edit/:id", body)
+    .then((results) => {
+      console.log(results.data);
+      return results.data;
+    })
+  },
+
+  deleteCustomOrder: () => {
+    return service.delete("/custom/cancel/:id")
     .then((results) => {
       console.log(results.data);
       return results.data;

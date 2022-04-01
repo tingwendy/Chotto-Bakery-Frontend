@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const [user, setUser] = React.useState({});
   const [custom, setCustom] = React.useState([]);
+  const [deleteCustom, setDeleteCustom] = React.useState([]);
 
   React.useEffect(() => {
     authService
@@ -35,6 +36,19 @@ const Profile = () => {
       console.error(err.message);
     });
   }, []);
+
+  React.useEffect(()=> {
+    authService
+    .deleteCustomOrder()
+    .then((results) => {
+      console.log("DELTED CUSTOM ORDER", results);
+      setDeleteCustom(results);
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+  }, []);
+
   return (
     <div>
        {<h3>{user.username}'s profile page</h3>}
@@ -50,6 +64,7 @@ const Profile = () => {
                <p>Pick up time requested: {custom.pickUpTime}</p>
                <img src= {custom.image}/>
                <Link style={{ textDecoration: "none", color: "brown" }} to={`/custom/edit/${custom._id}`}>Edit Custom Order</Link>
+               {/* <button href="#" onClick={() =>  deleteCustom(custom._id) }>Delete</button> */}
                </div>
            )
        })}
