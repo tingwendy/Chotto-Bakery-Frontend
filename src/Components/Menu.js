@@ -15,6 +15,7 @@ import {
 
 const Menu = (props) => {
     const [items, setItems] = React.useState([]);
+    const [searchBars, setSearchBars] = React.useState([...items]);
     const {onAdd}  =props;
 
   React.useEffect(() => {
@@ -38,9 +39,22 @@ const Menu = (props) => {
   //       });
   // };
   
+
+const searchBar= (e) => {
+  let search = e.target.value;
+
+  let menuResult = items.filter((item) => {
+    return item.name.toLowerCase().includes(search.toLowerCase());
+  })
+  setSearchBars(menuResult);
+}
   return (
     <div className="Menu">
     <h1>Menu</h1>
+    <h3>Search for an item: </h3>
+    <input type="text"
+           placeholder = "Search here"
+           onChange={(e)=> searchBar(e)} />
      {items.map((item, i) => {
        console.log("each item", item);
        return(
