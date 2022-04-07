@@ -107,14 +107,21 @@
   text-align: left;
 }
 
+.signUp {
+  width: 700px;
+  height: 700px;
+}
+
 .signup-form {
   font-family: "Nunito";
   padding: 20px;
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  border-radius: 8px;
-  margin: 10px auto;
+  max-width: 550px;
+  max-height: 300px;
+  /* border-radius: 8px; */
+  margin: 200px 500px;
+  position: absolute;
 }
 
 .signup-form-contents {

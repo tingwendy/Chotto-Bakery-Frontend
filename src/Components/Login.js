@@ -1,5 +1,6 @@
 import React from "react";
 import authService from "./Auth";
+import cheesecakeBackground from "../assets/cheesecakeBackground.webp"
 
 const Login = (props) => {
   const [username, setUsername] = React.useState("UserName");
@@ -22,6 +23,7 @@ const Login = (props) => {
   };
 
   return (
+    <div className="signUp">
     <div className="signup-form">
       <h3>Sign up for an account or login to view your profile</h3>
       <div className="signup-form-contents">
@@ -41,6 +43,7 @@ const Login = (props) => {
           />
           <button type="submit">Login</button>
         </form>
+        
       )}
       {!props.login && (
         <form onSubmit={signupUser}>
@@ -67,6 +70,8 @@ const Login = (props) => {
       )}
       <p>{loginMessage}</p>
       </div>
+    </div>
+      <img className="signUpBackground" src= {cheesecakeBackground} alt="signUpBackground"/>
     </div>
   );
 };
