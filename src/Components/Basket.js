@@ -1,10 +1,15 @@
 import React from "react";
 import authService from "./Auth";
 import StripeCheckout from "react-stripe-checkout";
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-></link>;
+import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+
 
 export default function Basket(props) {
   const { cartItems, onAdd, onRemove } = props;
@@ -47,12 +52,15 @@ export default function Basket(props) {
   };
 
   return (
-    <aside>
-      <h3>Cart Items</h3>
+  <React.Fragment>
+      <Typography variant="h6" gutterBottom>
+        Cart Items
       <div>{cartItems.length === 0 && <div> Cart is empty</div>}</div>
+      </Typography>
+      <List disablePadding>
       {cartItems.map((item) => (
-        <div key={item.id}>
-          <div>{item.name}</div>
+        <ListItem key={item.id} sx={{ py:1, px: 0}}>
+          <ListItemText primary={item.name}></ListItemText>
           <div>
             <button
               class="btn btn-outline-primary btn-circle"
@@ -72,8 +80,10 @@ export default function Basket(props) {
           <div>
             {item.quantity} x ${item.price}
           </div>
-        </div>
+     
+      </ListItem>
       ))}
+      </List>
 
       {cartItems.length !== 0 && (
         <div>
@@ -93,6 +103,5 @@ export default function Basket(props) {
           </StripeCheckout>
         </div>
       )}
-    </aside>
-  );
-}
+      </React.Fragment>
+  )}
